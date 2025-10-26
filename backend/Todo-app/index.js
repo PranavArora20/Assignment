@@ -23,28 +23,37 @@ function writeTodos(todos) {
 }
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the To-Do API! Use /todos to access endpoints.");
+  res.status(200).json({
+    message: "Welcome to the To-Do API! Use /todos to access endpoints.",
+  });
 });
 
 app.get("/todos", (req, res) => {
   const todos = readTodos();
-  return res.status(200).json(todos);
+  return res.status(200).json({ data: todos });
 });
 
 app.post("/todos", (req, res) => {
   const { title, completed = false } = req.body;
   if (!title?.trim()) {
-    return res.status(400).json({ message: "Todo title is required." });
+    return res.status(400).json({
+      status: "error",
+      message: "Todo title is required.",
+    });
   }
   const todos = readTodos();
   const todoItem = {
     id: generateId(),
     title: title.trim(),
     completed: Boolean(completed),
+    createdAt: new Date().toISOString(),
   };
   todos.push(todoItem);
   writeTodos(todos);
-  return res.status(201).json(todoItem);
+  return res.status(201).json({
+    status: "success",
+    data: todoItem,
+  });
 });
 
 app.put("/todos/:id", (req, res) => {
@@ -53,12 +62,19 @@ app.put("/todos/:id", (req, res) => {
   const todos = readTodos();
   const index = todos.findIndex((todo) => todo.id === todoId);
   if (index === -1) {
-    return res.status(404).json({ message: "Todo not found." });
+    return res.status(404).json({
+      status: "error",
+      message: "Todo not found.",
+    });
   }
   if (title !== undefined) todos[index].title = title;
   if (completed !== undefined) todos[index].completed = completed;
+  todos[index].updatedAt = new Date().toISOString();
   writeTodos(todos);
-  return res.status(200).json(todos[index]);
+  return res.status(200).json({
+    status: "success",
+    data: todos[index],
+  });
 });
 
 app.delete("/todos/:id", (req, res) => {
@@ -66,10 +82,16 @@ app.delete("/todos/:id", (req, res) => {
   const todos = readTodos();
   const updatedTodos = todos.filter((todo) => todo.id !== todoId);
   if (todos.length === updatedTodos.length) {
-    return res.status(404).json({ message: "Todo not found." });
+    return res.status(404).json({
+      status: "error",
+      message: "Todo not found.",
+    });
   }
   writeTodos(updatedTodos);
-  return res.status(200).json({ message: "Todo deleted successfully." });
+  return res.status(200).json({
+    status: "success",
+    message: "Todo deleted successfully.",
+  });
 });
 
 app.listen(PORT, () => {
