@@ -22,6 +22,10 @@ function writeTodos(todos) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(todos, null, 2));
 }
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the To-Do API! Use /todos to access endpoints.");
+});
+
 app.get("/todos", (req, res) => {
   const todos = readTodos();
   return res.status(200).json(todos);
