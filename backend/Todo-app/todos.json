@@ -1,0 +1,27 @@
+[
+  {
+    "id": "d5b25aa8-0962-4e53-bc94-077daa0602dd",
+    "title": "Buy milk",
+    "completed": false
+  },
+  {
+    "id": "301af778-9b42-4169-8f9e-14b94319f199",
+    "title": "Read a chapter",
+    "completed": true
+  },
+  {
+    "id": "f886f694-8bec-496f-90b4-e06acf12a19d",
+    "title": "Clean desk",
+    "completed": false
+  },
+  {
+    "id": "1a06ca41-d9b3-4113-82c8-dc547a9b25e7",
+    "title": "Pay electricity bill",
+    "completed": false
+  },
+  {
+    "id": "a56e636b-b3ab-4711-8f6d-611c5811ed81",
+    "title": "Walk the dog",
+    "completed": true
+  }
+]
