@@ -1,0 +1,62 @@
+/* Keep your existing root spacing */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+body{
+  background-color: #f5f5f5;
+}
+/* Center only headings, not table cells */
+h1, h2, h3 {
+  text-align: center;
+}
+
+/* Make the table wrapper scroll on small screens */
+.tableWrap {
+  width: 100%;
+  overflow-x: auto; /* horizontal scroll if needed */
+}
+
+/* Basic table look */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table thead th {
+  text-align: left;            /* keep headers left-aligned */
+  background: rgba(0,0,0,0.05);
+}
+
+.table th, .table td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  vertical-align: middle;
+}
+
+/* Small avatar image */
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Controls spacing */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 16px;
+}
+
+/* Optional: center the pagination bar only */
+.pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
